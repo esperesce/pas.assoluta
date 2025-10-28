@@ -1,0 +1,413 @@
+/* ======== IMPORT FONT E VARIABILI ======== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #2a402b;  /* Verde equestre scuro */
+    --secondary-color: #fdfcf7; /* Crema/bianco sporco */
+    --text-color: #333333;
+    --text-color-light: #555555;
+    --header-font: 'Playfair Display', serif;
+    --body-font: 'Lato', sans-serif;
+}
+
+/* ======== RESET GLOBALE E TIPOGRAFIA (V8) ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html { 
+    scroll-behavior: smooth; 
+}
+body {
+    font-family: var(--body-font);
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    line-height: 1.75; /* Aumentata per leggibilità */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+p {
+    margin-bottom: 25px; /* Aumentato per spazio */
+    font-size: 1.15rem;  /* Aumentato per leggibilità */
+    color: var(--text-color-light);
+}
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ======== NAVBAR (V3 - Con Dropdown e Logo) ======== */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+.navbar-logo img {
+    max-height: 50px;
+    width: auto;
+}
+.navbar-menu {
+    list-style: none;
+    display: flex;
+}
+.navbar-menu li {
+    position: relative;
+    padding: 0 15px;
+}
+.navbar-menu a {
+    display: block;
+    padding: 30px 0;
+    font-family: var(--body-font);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+.navbar-menu a:hover {
+    color: #6a996c;
+}
+.navbar-menu .dropdown-toggle::after {
+    content: ' ▼';
+    font-size: 0.7em;
+}
+.dropdown-menu {
+    list-style: none;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    border-radius: 0 0 5px 5px;
+    min-width: 220px;
+}
+.dropdown-menu li {
+    padding: 0;
+}
+.dropdown-menu a {
+    padding: 12px 20px;
+    width: 100%;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+.dropdown-menu.show {
+    display: block;
+}
+.navbar-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* ======== HERO (V1 Modificato - SOLO Homepage con Foto) ======== */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    height: 60vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    /* Assicurati di avere 'hero-home.jpg' nella cartella 'images' */
+    background-image: url('images/hero-home.jpg'); 
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
+.hero-content p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    text-align: center; /* Il testo nell'hero non deve essere giustificato */
+}
+.cta-button {
+    font-family: var(--header-font);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover { background-color: #4a754c; }
+
+/* ======== SEZIONE SERVIZI (Homepage - No Immagini) ======== */
+.services {
+    padding: 80px 0;
+    text-align: center;
+    background-color: #fff;
+}
+.services h2 { 
+    font-size: 2.8rem; 
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left;
+}
+.service-card {
+    background-color: var(--secondary-color);
+    border: 1px solid #eee;
+    padding: 30px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.service-card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: left; /* Il testo nelle card non va giustificato */
+}
+.service-card a {
+    font-weight: 700;
+    font-family: var(--body-font);
+}
+
+/* ======== HEADER PAGINE INTERNE (V2 - Sfondo Verde) ======== */
+.page-header {
+    background-color: var(--primary-color);
+    padding: 60px 0;
+    text-align: center;
+}
+.page-header h1 {
+    color: white;
+    font-size: 3rem;
+    margin: 0;
+}
+
+/* ======== CONTENUTO PAGINE INTERNE (V8 - Leggibilità) ======== */
+.page-content {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+.page-content .container {
+    max-width: 850px;
+}
+.page-content p {
+    text-align: justify; /* Testo giustificato */
+}
+.page-content h2 { 
+    font-size: 2.5rem; 
+    margin-top: 40px; /* Spazio sopra il sottotitolo */
+    margin-bottom: 20px; /* Spazio sotto il sottotitolo */
+}
+.page-content h2:first-of-type {
+    margin-top: 0; /* Rimuove spazio extra al primo H2 */
+}
+
+/* ======== STILI IMMAGINI INTERNE (V6) ======== */
+.content-image-small {
+    max-width: 350px;
+    width: 100%;
+    float: right;
+    margin-left: 25px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.content-image-large {
+    width: 100%;
+    max-width: 100%;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ======== STILE VIDEO HTML5 (V7) ======== */
+.video-container-html5 video {
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    background-color: #000;
+}
+
+/* ======== PAGINA CONTATTI ======== */
+.contact-page {
+    padding: 80px 0;
+    background-color: #fff;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+.contact-details p { 
+    font-size: 1.2rem;
+    text-align: left; /* Non giustificato */
+}
+.contact-details strong { 
+    color: var(--primary-color); 
+}
+.contact-form h2 { 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+    margin-top: 0;
+}
+.form-group { 
+    margin-bottom: 20px; 
+}
+.form-group label { 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: 700; 
+}
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--body-font);
+    font-size: 1rem;
+}
+.form-button {
+    font-family: var(--header-font);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.form-button:hover { 
+    background-color: #4a754c; 
+}
+
+/* ======== FOOTER ======== */
+.footer {
+    background-color: #222222;
+    color: #aaa;
+    padding: 50px 0;
+    text-align: center;
+}
+.footer p { 
+    color: #aaa; 
+    font-size: 0.9rem; 
+    margin: 5px 0;
+    text-align: center; /* Non giustificato */
+}
+
+/* ======== RESPONSIVE (V3) ======== */
+@media (max-width: 992px) {
+    .services-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    .navbar-menu.active {
+        display: flex;
+    }
+    .navbar-menu li {
+        padding: 0;
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .navbar-menu a {
+        padding: 20px;
+        width: 100%;
+    }
+    .navbar-menu .dropdown-toggle::after {
+        content: ' ▼';
+        float: right;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+        min-width: 100%;
+        border-top: 1px solid #eee;
+        background-color: #fdfcf7;
+    }
+    .dropdown-menu a {
+        padding-left: 40px;
+    }
+
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1.1rem; }
+    
+    .services-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .contact-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .content-image-small {
+        float: none;
+        max-width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+}
