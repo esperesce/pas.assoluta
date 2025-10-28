@@ -15,8 +15,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(event) {
-            // Preveniamo che il link navighi (vogliamo solo aprire il menu)
-            event.preventDefault(); 
+            
+            // ==========================================================
+            // NUOVA LOGICA (Questa è la modifica che hai chiesto)
+            // ==========================================================
+            // Blocchiamo il link SOLO se l'href è un cancelletto ("#")
+            // (come per "Cosa Offriamo")
+            // Altrimenti, lasciamo che il link funzioni e porti 
+            // alla pagina (es. index.html o chi-siamo.html).
+            
+            if (this.getAttribute('href') === '#') {
+                event.preventDefault(); // Blocca solo i link "vuoti"
+            }
+            // ==========================================================
+            // FINE DELLA MODIFICA
+            // ==========================================================
+            
             
             // Troviamo il sottomenu di QUESTO specifico link
             const dropdownMenu = this.nextElementSibling;
@@ -42,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Chiudi i menu se l'utente clicca fuori
     window.addEventListener('click', function(event) {
+        // Assicurati che il click non sia sul toggle stesso
         if (!event.target.matches('.dropdown-toggle')) {
             closeAllDropdowns(null);
         }
