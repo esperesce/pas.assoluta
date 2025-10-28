@@ -17,28 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
         toggle.addEventListener('click', function(event) {
             
             // ==========================================================
-            // NUOVA LOGICA (Questa è la modifica che hai chiesto)
+            // LOGICA CORRETTA (VECCHIA)
+            // Blocca SEMPRE il link del menu principale se è un "toggle"
             // ==========================================================
-            // Blocchiamo il link SOLO se l'href è un cancelletto ("#")
-            // (come per "Cosa Offriamo")
-            // Altrimenti, lasciamo che il link funzioni e porti 
-            // alla pagina (es. index.html o chi-siamo.html).
-            
-            if (this.getAttribute('href') === '#') {
-                event.preventDefault(); // Blocca solo i link "vuoti"
-            }
-            // ==========================================================
-            // FINE DELLA MODIFICA
+            event.preventDefault(); 
             // ==========================================================
             
-            
-            // Troviamo il sottomenu di QUESTO specifico link
             const dropdownMenu = this.nextElementSibling;
-            
-            // Chiudi tutti gli altri menu aperti
             closeAllDropdowns(dropdownMenu);
             
-            // Apri o chiudi il menu corrente
             if (dropdownMenu) {
                 dropdownMenu.classList.toggle('show');
             }
@@ -56,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Chiudi i menu se l'utente clicca fuori
     window.addEventListener('click', function(event) {
-        // Assicurati che il click non sia sul toggle stesso
         if (!event.target.matches('.dropdown-toggle')) {
             closeAllDropdowns(null);
         }
